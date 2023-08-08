@@ -16,3 +16,6 @@ service: const getUser = (params) => get('/user', params).then((res) => {
 
 ## backend server
 json server
+
+## twitter mock pages
+under DOC folder

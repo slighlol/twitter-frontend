@@ -7,3 +7,12 @@ npm start
 
 ## how to access
 http://localhost:3000/
+
+## send request
+request: get post put patch delete
+service: const getUser = (params) => get('/user', params).then((res) => {
+  return res;
+})
+
+## backend server
+json server

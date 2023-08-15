@@ -1,9 +1,8 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable arrow-body-style */
 import { Input, Button } from 'antd-mobile';
 
-import Header from '../../components/Header';
-import DatePickerInput from '../../components/DatePickerInput';
+import Header from '@components/Header';
+import DatePickerInput from '@components/DatePickerInput';
 import style from './index.module.css';
 
 /**

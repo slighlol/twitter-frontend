@@ -1,4 +1,4 @@
-import datePickerIcon from '../../assets/datepicker-icon.svg';
+import datePickerIcon from '@assets/datepicker-icon.svg';
 
 import style from './index.module.css';
 

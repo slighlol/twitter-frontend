@@ -17,5 +17,18 @@
   },
   "env" : {
     "browser": true
+  },
+  "settings": {
+    "import/resolver" : {
+      "alias": {
+        "map": [
+          ["@components", "./src/components"],
+          ["@assets", "./src/assets"],
+          ["@utils", "./src/utils"],
+          ["@services", "./src/services"],
+          ["@containers", "./src/containers"]
+        ]
+      }
+    }
   }
 }

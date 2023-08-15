@@ -30,3 +30,8 @@ under DOC folder
 - css 
 - scss easy nested format -> css
 - css module -> no namespace conflict
+
+
+## frontend engineering config info
+- craco.config.js: webpack file alias
+- jsconfig.json: used by vscode js config

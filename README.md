@@ -19,3 +19,14 @@ json server
 
 ## twitter mock pages
 under DOC folder
+
+
+## React 5 steps
+- Step 1: Break the UI into a component hierarchy 
+- Step 2: Build a static version in React 
+
+
+## style stacks
+- css 
+- scss easy nested format -> css
+- css module -> no namespace conflict

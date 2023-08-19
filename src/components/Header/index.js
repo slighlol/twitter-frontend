@@ -2,7 +2,8 @@
 import { CloseOutline } from 'antd-mobile-icons';
 import logo from '../../assets/twitter-logo.svg';
 
-import style from './index.module.css';
+// eslint-disable-next-line import/no-unresolved
+import style from './index.module.scss';
 
 export default () => (
   <div className={style.header}>

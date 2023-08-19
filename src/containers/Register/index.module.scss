@@ -1,8 +1,23 @@
-@value tblue #1d9bf0;
-@value tGray #868a9c;
+@import '../../common.module.scss';
 
   .form {
     margin: 0 30px;
+  }
+
+  .formContainer {
+    :global(.adm-list-body) {
+      background-color: none;
+      border: none;
+    }
+    :global(.adm-list-item) {
+      padding: 0;
+      margin: 0;
+    }
+    :global(.adm-list-item-content) {
+      padding: 0;
+      margin: 0;
+      border:none;
+    }
   }
 
   .fromTitle {
@@ -13,11 +28,11 @@
   }
 
   .input {
-    composes: input from '../../common.module.css';
+    composes: input from '../../common.module.scss';
   }
 
   .changeTypeButton {
-    color: tblue;
+    color: $tblue;
   }
 
   .birthdayTitle {
@@ -37,7 +52,7 @@
   .footerButton {
     margin: 0 auto;
     border-radius: 50px;
-    background-color: tGray;
+    background-color: $tGray;
     color: #fff;
     font-size: 16px;
     width: 80%;

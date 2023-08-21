@@ -1,12 +1,16 @@
 @import '../../common.module.scss';
 
+  .common {
+    composes: input from '../../common.module.scss';
+  }
+
   .form {
     margin: 0 30px;
   }
 
   .formContainer {
     :global(.adm-list-body) {
-      background-color: none;
+      background: none;
       border: none;
     }
     :global(.adm-list-item) {
@@ -16,7 +20,9 @@
     :global(.adm-list-item-content) {
       padding: 0;
       margin: 0;
-      border:none;
+    }
+    :global(.adm-list-item-content) {
+      border: none;
     }
   }
 
@@ -28,11 +34,11 @@
   }
 
   .input {
-    composes: input from '../../common.module.scss';
+    composes: common;
   }
 
   .changeTypeButton {
-    color: $tblue;
+    color: $tBlue;
   }
 
   .birthdayTitle {

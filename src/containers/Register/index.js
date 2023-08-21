@@ -1,9 +1,10 @@
 /* eslint-disable arrow-body-style */
 import { useState } from 'react';
 import { Input, Button, Form } from 'antd-mobile';
-
-import Header from '@components/Header';
 import DatePickerInput from '@components/DatePickerInput';
+import Header from '@components/Header';
+import TInput from '@components/TInput';
+
 import style from './index.module.scss';
 
 const ACCOUNT_TYPE = {
@@ -47,12 +48,12 @@ const Register = () => {
         <div className={style.fromTitle}>Create Account</div>
         <Form form={form} initialValues={formData} className={style.formContainer}>
           <Form.Item name="name" rules={[{ required: true, message: 'username is empty' }]}>
-            <Input placeholder="Username" className={style.input} />
+            <TInput length={50} label="Username" />
           </Form.Item>
 
           {accountType === ACCOUNT_TYPE.TEL && (
           <Form.Item name="tel" rules={[{ required: true, message: 'phone number is empty' }]}>
-            <Input placeholder="Phone Number" className={style.input} />
+            <TInput length={11} label="Phone Number" />
           </Form.Item>
           )}
           {accountType === ACCOUNT_TYPE.EMAIL && (

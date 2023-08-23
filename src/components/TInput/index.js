@@ -1,6 +1,6 @@
 import { Input } from 'antd-mobile';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './index.module.scss';
 
 /**
@@ -14,6 +14,13 @@ const TInput = ({
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [hide, setHide] = useState(false);
+
+  useEffect(() => {
+    if (value) {
+      setIsFocused(true);
+      setHide(true);
+    }
+  }, []);
 
   const onFocus = () => {
     setIsFocused(true);
@@ -58,14 +65,16 @@ const TInput = ({
 };
 
 TInput.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   value: PropTypes.string,
-  length: PropTypes.number.isRequired,
+  length: PropTypes.number,
   onChange: PropTypes.func,
 };
 
 TInput.defaultProps = {
-  value: '',
+  label: '',
+  value: undefined,
+  length: undefined,
   onChange: () => {},
 };
 

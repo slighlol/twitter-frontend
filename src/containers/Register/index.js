@@ -1,9 +1,10 @@
 /* eslint-disable arrow-body-style */
 import { useState } from 'react';
-import { Input, Button, Form } from 'antd-mobile';
+import { Form } from 'antd-mobile';
 import DatePickerInput from '@components/DatePickerInput';
 import Header from '@components/Header';
 import TInput from '@components/TInput';
+import Footer from './components/Footer';
 
 import style from './index.module.scss';
 
@@ -52,13 +53,13 @@ const Register = () => {
           </Form.Item>
 
           {accountType === ACCOUNT_TYPE.TEL && (
-          <Form.Item name="tel" rules={[{ required: true, message: 'phone number is empty' }]}>
+          <Form.Item name="tel" rules={[{ required: true, message: 'phone number is invalid', pattern: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/ }]}>
             <TInput length={11} label="Phone Number" />
           </Form.Item>
           )}
           {accountType === ACCOUNT_TYPE.EMAIL && (
-          <Form.Item name="email" rules={[{ required: true, message: 'email is empty' }]}>
-            <Input placeholder="Email" className={style.input} />
+          <Form.Item name="email" rules={[{ required: true, message: 'email is invalid', pattern: /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/g }]}>
+            <TInput label="Email" />
           </Form.Item>
           )}
           <Form.Item>
@@ -69,13 +70,11 @@ const Register = () => {
             <div>This info will not be public. </div>
           </Form.Item>
           <Form.Item name="birthday">
-            <DatePickerInput />
+            <DatePickerInput onClickNextStep={onClickNextStep} />
           </Form.Item>
         </Form>
       </div>
-      <div className={style.footer}>
-        <Button className={style.footerButton} onClick={onClickNextStep}>Next</Button>
-      </div>
+      <Footer />
     </div>
   );
 };

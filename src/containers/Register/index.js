@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable arrow-body-style */
 import { useState } from 'react';
-import { Form } from 'antd-mobile';
+import { Button, Form } from 'antd-mobile';
 import DatePickerInput from '@components/DatePickerInput';
 import Header from '@components/Header';
 import TInput from '@components/TInput';
@@ -26,6 +27,7 @@ const Register = () => {
     birthday: '20230819',
   });
   const [accountType, setAccountType] = useState(ACCOUNT_TYPE.TEL);
+  const [footerButtonDisabled, setFooterButtonDisabled] = useState(true);
 
   const onAccountTypeChange = () => {
     if (accountType === ACCOUNT_TYPE.TEL) {
@@ -37,8 +39,20 @@ const Register = () => {
 
   const onClickNextStep = async () => {
     const validate = await form.validateFields();
-    if (validate) {
-      console.log(validate);
+  };
+
+  const onValuesChange = async () => {
+    try {
+      const validate = await form.validateFields();
+      if (validate) {
+        setFooterButtonDisabled(false);
+      }
+    } catch (e) {
+      if (e.errorFields.length === 0) {
+        setFooterButtonDisabled(false);
+        return;
+      }
+      setFooterButtonDisabled(true);
     }
   };
 
@@ -47,7 +61,12 @@ const Register = () => {
       <Header />
       <div className={style.form}>
         <div className={style.fromTitle}>Create Account</div>
-        <Form form={form} initialValues={formData} className={style.formContainer}>
+        <Form
+          form={form}
+          initialValues={formData}
+          onValuesChange={onValuesChange}
+          className={style.formContainer}
+        >
           <Form.Item name="name" rules={[{ required: true, message: 'username is empty' }]}>
             <TInput length={50} label="Username" />
           </Form.Item>
@@ -63,18 +82,18 @@ const Register = () => {
           </Form.Item>
           )}
           <Form.Item>
-            <div className={style.changeTypeButton} onClick={onAccountTypeChange}>
+            <span className={style.changeTypeButton} onClick={onAccountTypeChange}>
               {accountType === ACCOUNT_TYPE.EMAIL ? 'Switch to Phone Login' : 'Switch to Email Login'}
-            </div>
+            </span>
             <div className={style.birthdayTitle}>Your Date of Birth</div>
             <div>This info will not be public. </div>
           </Form.Item>
           <Form.Item name="birthday">
-            <DatePickerInput onClickNextStep={onClickNextStep} />
+            <DatePickerInput />
           </Form.Item>
         </Form>
       </div>
-      <Footer />
+      <Footer disabled={footerButtonDisabled} onClickNextStep={onClickNextStep} />
     </div>
   );
 };

@@ -6,7 +6,7 @@ import style from '../index.module.scss';
 /**
  * Bottom next button
  */
-const Footer = () => ({
+const Footer = ({
   onClickNextStep,
   disabled,
 }) => (

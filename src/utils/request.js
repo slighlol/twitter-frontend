@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+import { Toast } from 'antd-mobile';
 import axios from 'axios';
 
 const domain = 'http://localhost:3334';
@@ -10,7 +11,9 @@ axios.interceptors.request.use((config) => ({
 }));
 
 // intercept response: handle data, handle error
-axios.interceptors.response.use((response) => response.data, (err) => Promise.reject(err));
+axios.interceptors.response.use((response) => response.data, () => {
+  Toast.show('Server Failure');
+});
 
 export const get = (url) => axios.get(url);
 

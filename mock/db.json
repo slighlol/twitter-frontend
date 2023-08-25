@@ -1,16 +1,11 @@
 {
   "user": [
     {
-      "username": "test1",
-      "password": "pass1",
-      "age": "23",
-      "address": "redwood city"
-    },
-    {
-      "username": "test2",
-      "password": "pass2",
-      "age": "44",
-      "address": "san carlos"
+      "password": "a",
+      "username": "a",
+      "tel": "6268230830",
+      "birthday": "20230819",
+      "id": 1
     }
   ]
 }

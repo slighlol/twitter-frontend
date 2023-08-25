@@ -1,17 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable arrow-body-style */
 import { useState } from 'react';
-import { Button, Form } from 'antd-mobile';
-import DatePickerInput from '@components/DatePickerInput';
 import Header from '@components/Header';
-import TInput from '@components/TInput';
-import Footer from './components/Footer';
+import Show from '@components/Show';
+import { registerUser } from '@services/register';
+import { Toast } from 'antd-mobile';
+import OneStep from './components/OneStep';
+import TwoStep from './components/TwoStep';
 
-import style from './index.module.scss';
-
-const ACCOUNT_TYPE = {
-  TEL: 'TEL',
-  EMAIL: 'EMAIL',
+// indicate step
+const STEP = {
+  ONE: 1,
+  TWO: 2,
 };
 
 /**
@@ -19,81 +19,42 @@ const ACCOUNT_TYPE = {
  */
 
 const Register = () => {
-  const [form] = Form.useForm();
-  const [formData] = useState({
-    name: '',
-    tel: '',
-    email: '',
-    birthday: '20230819',
-  });
-  const [accountType, setAccountType] = useState(ACCOUNT_TYPE.TEL);
-  const [footerButtonDisabled, setFooterButtonDisabled] = useState(true);
+  const [step, setStep] = useState(STEP.ONE);
+  const [userInfo, setUserInfo] = useState({});
 
-  const onAccountTypeChange = () => {
-    if (accountType === ACCOUNT_TYPE.TEL) {
-      setAccountType(ACCOUNT_TYPE.EMAIL);
+  const gotoNextStepHandler = (data) => {
+    setUserInfo(data);
+    setStep(STEP.TWO);
+  };
+
+  const confirmRegisterHandler = async (password) => {
+    const res = await registerUser({
+      password,
+      ...userInfo,
+    });
+    if (res.success) {
+      Toast.show('Success');
       return;
     }
-    setAccountType(ACCOUNT_TYPE.TEL);
+    Toast.show('Fail');
   };
 
-  const onClickNextStep = async () => {
-    const validate = await form.validateFields();
-  };
-
-  const onValuesChange = async () => {
-    try {
-      const validate = await form.validateFields();
-      if (validate) {
-        setFooterButtonDisabled(false);
-      }
-    } catch (e) {
-      if (e.errorFields.length === 0) {
-        setFooterButtonDisabled(false);
-        return;
-      }
-      setFooterButtonDisabled(true);
-    }
+  const onClickClose = () => {
+    setStep(STEP.ONE);
   };
 
   return (
     <div>
-      <Header />
-      <div className={style.form}>
-        <div className={style.fromTitle}>Create Account</div>
-        <Form
-          form={form}
-          initialValues={formData}
-          onValuesChange={onValuesChange}
-          className={style.formContainer}
-        >
-          <Form.Item name="name" rules={[{ required: true, message: 'username is empty' }]}>
-            <TInput length={50} label="Username" />
-          </Form.Item>
-
-          {accountType === ACCOUNT_TYPE.TEL && (
-          <Form.Item name="tel" rules={[{ required: true, message: 'phone number is invalid', pattern: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/ }]}>
-            <TInput length={11} label="Phone Number" />
-          </Form.Item>
-          )}
-          {accountType === ACCOUNT_TYPE.EMAIL && (
-          <Form.Item name="email" rules={[{ required: true, message: 'email is invalid', pattern: /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/g }]}>
-            <TInput label="Email" />
-          </Form.Item>
-          )}
-          <Form.Item>
-            <span className={style.changeTypeButton} onClick={onAccountTypeChange}>
-              {accountType === ACCOUNT_TYPE.EMAIL ? 'Switch to Phone Login' : 'Switch to Email Login'}
-            </span>
-            <div className={style.birthdayTitle}>Your Date of Birth</div>
-            <div>This info will not be public. </div>
-          </Form.Item>
-          <Form.Item name="birthday">
-            <DatePickerInput />
-          </Form.Item>
-        </Form>
-      </div>
-      <Footer disabled={footerButtonDisabled} onClickNextStep={onClickNextStep} />
+      <Header onClickClose={onClickClose} />
+      <Show visible={step === STEP.ONE}>
+        <OneStep gotoNextStepHandler={gotoNextStepHandler} />
+      </Show>
+      <Show visible={step === STEP.TWO}>
+        <TwoStep
+          userInfo={userInfo}
+          confirmRegisterHandler={confirmRegisterHandler}
+        />
+      </Show>
     </div>
   );
 };

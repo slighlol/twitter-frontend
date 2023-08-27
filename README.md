@@ -8,6 +8,10 @@ npm start
 ## how to access
 http://localhost:3000/
 
+## json server mock default command without server.js
+"mock": "npx json-server --watch ./mock/db.json --routes ./mock/routes.json --port 3334"
+
+
 ## send request
 request: get post put patch delete
 service: const getUser = (params) => get('/user', params).then((res) => {

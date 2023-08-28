@@ -33,7 +33,7 @@ const TwoStep = ({
   return (
     <div className={style.TwoStep}>
       <div className={style.form}>
-        <div className={style.fromTitle}> Create your account </div>
+        <div className={style.formTitle}> Create your account </div>
         <div className={style.showLabelContainer}>
           <div className={style.showLabel}>
             Name:

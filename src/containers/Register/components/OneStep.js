@@ -64,7 +64,7 @@ const OneStep = ({
   return (
     <div>
       <div className={style.form}>
-        <div className={style.fromTitle}>Create Account</div>
+        <div className={style.formTitle}>Create Account</div>
         <Form
           form={form}
           initialValues={formData}

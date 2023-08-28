@@ -1,54 +1,78 @@
 /* eslint-disable linebreak-style */
 import {
-  Button, Input, Form, Dialog,
+  Button, Form, Dialog,
 } from 'antd-mobile';
-import { loginService } from '../../services/login';
-import './index.css';
+import Header from '@components/Header';
+import TInput from '@components/TInput';
+import { login } from '../../services/login';
+import style from './index.module.scss';
 
-const initialValues = {
-  username: 'test1',
-  password: 'pass1',
-};
+/**
+ * login page
+ */
 
 const Login = () => {
   const [form] = Form.useForm();
 
   const onSubmit = async () => {
-    const values = form.getFieldsValue();
-    const res = await loginService(values.username, values.password);
-    if (res && res.length > 0) {
+    const values = await form.validateFields();
+    if (values) {
+      const res = await login(values.username, values.password);
+      if (res.success && res.data.length > 0) {
+        Dialog.alert({
+          content: 'login success',
+        });
+        return;
+      }
       Dialog.alert({
-        content: 'login success',
+        content: 'login failed',
       });
-      return;
     }
-    Dialog.alert({
-      content: 'login failed',
-    });
   };
 
   return (
-    <div className="login">
-      <Form
-        form={form}
-        layout="horizontal"
-        mode="card"
-        initialValues={initialValues}
-        footer={(
-          <Button block color="primary" onClick={onSubmit} size="large">
-            Login
-          </Button>
-        )}
-      >
+    <>
+      <Header />
+      <div className={style.login}>
+        <div className={style.formTitle}>
+          Log In Twitter
+        </div>
+        <Form
+          form={form}
+          className={style.formContainer}
+        >
 
-        <Form.Item label="Username" name="username">
-          <Input placeholder="Please Enter Username" clearable />
-        </Form.Item>
-        <Form.Item label="Password" name="password">
-          <Input placeholder="Please Enter Password" clearable type="password" />
-        </Form.Item>
-      </Form>
-    </div>
+          <Form.Item
+            name="username"
+            rules={[
+              { required: true, message: 'username cannot be empty' },
+            ]}
+          >
+            <TInput label="Username" />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[
+              { required: true, message: 'password cannot be empty' },
+            ]}
+          >
+            <TInput label="Password" type="password" />
+          </Form.Item>
+          <Button className={style.footerButton} onClick={onSubmit}>
+            Next
+          </Button>
+        </Form>
+        <div className={style.goToRegister}>
+          Do not have an account?
+          <a
+            href="/"
+            target="_blank"
+          >
+            Register
+          </a>
+        </div>
+      </div>
+    </>
   );
 };
 

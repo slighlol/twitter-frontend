@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable arrow-body-style */
 import { useState } from 'react';
-import Header from '@components/Header';
 import Show from '@components/Show';
 import { registerUser } from '@services/register';
 import { Toast } from 'antd-mobile';
@@ -39,13 +38,12 @@ const Register = () => {
     Toast.show('Fail');
   };
 
-  const onClickClose = () => {
-    setStep(STEP.ONE);
-  };
+  //  const onClickClose = () => {
+  //    setStep(STEP.ONE);
+  //  };
 
   return (
     <div>
-      <Header onClickClose={onClickClose} />
       <Show visible={step === STEP.ONE}>
         <OneStep gotoNextStepHandler={gotoNextStepHandler} />
       </Show>

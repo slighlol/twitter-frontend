@@ -6,6 +6,13 @@
       "tel": "6268230830",
       "birthday": "20230819",
       "id": 1
+    },
+    {
+      "password": "abc",
+      "username": "vincechang",
+      "tel": "6268230832",
+      "birthday": "20200830",
+      "id": 2
     }
   ]
 }

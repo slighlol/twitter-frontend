@@ -5,6 +5,8 @@ import {
 } from 'antd-mobile';
 import TInput from '@components/TInput';
 import { Link } from 'react-router-dom';
+import { useAppContext } from '@utils/context';
+import { useEffect } from 'react';
 import { login } from '../../services/login';
 import style from './index.module.scss';
 
@@ -14,6 +16,13 @@ import style from './index.module.scss';
 
 const Login = () => {
   const [form] = Form.useForm();
+  const [, setStore] = useAppContext();
+
+  useEffect(() => {
+    setStore({
+      closeHeaderHandler: null,
+    });
+  }, []);
 
   const onSubmit = async () => {
     const values = await form.validateFields();

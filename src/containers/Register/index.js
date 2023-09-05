@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable arrow-body-style */
-import { useState } from 'react';
-import Header from '@components/Header';
+import { useEffect, useState } from 'react';
 import Show from '@components/Show';
 import { registerUser } from '@services/register';
 import { Toast } from 'antd-mobile';
+import { useAppContext } from '@utils/context';
+import { useNavigate } from 'react-router-dom';
 import OneStep from './components/OneStep';
 import TwoStep from './components/TwoStep';
 
@@ -21,6 +22,22 @@ const STEP = {
 const Register = () => {
   const [step, setStep] = useState(STEP.ONE);
   const [userInfo, setUserInfo] = useState({});
+
+  const [, setStore] = useAppContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (step === STEP.ONE) {
+      setStore({
+        closeHeaderHandler: () => navigate('/login'),
+      });
+    }
+    if (step === STEP.TWO) {
+      setStore({
+        closeHeaderHandler: () => setStep(STEP.ONE),
+      });
+    }
+  }, [step]);
 
   const gotoNextStepHandler = (data) => {
     setUserInfo(data);
@@ -39,19 +56,15 @@ const Register = () => {
     Toast.show('Fail');
   };
 
-  const onClickClose = () => {
-    setStep(STEP.ONE);
-  };
-
   return (
     <div>
-      <Header onClickClose={onClickClose} />
       <Show visible={step === STEP.ONE}>
         <OneStep gotoNextStepHandler={gotoNextStepHandler} />
       </Show>
-      <Show visible={step === STEP.TWO}>
+      <Show visible={step === STEP.TWO} isMount>
         <TwoStep
           userInfo={userInfo}
+          goToOneStepHanlder={() => setStep(STEP.ONE)}
           confirmRegisterHandler={confirmRegisterHandler}
         />
       </Show>

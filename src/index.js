@@ -6,6 +6,7 @@ import App from '@containers/App';
 import Login from '@containers/Login';
 import Register from '@containers/Register';
 import { CxtProvider } from '@utils/context';
+import Tweets from '@containers/Tweets';
 
 // import { startVconsole } from './utils';
 
@@ -18,6 +19,7 @@ root.render(
           <Route path="/" element={<App />}>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/tweets" element={<Tweets />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,5 +1,3 @@
-@import '../../common.module.scss';
-
 .login {
   padding: 40px;
 }
@@ -10,12 +8,12 @@
   background-color: #000;
   color: #fff;
   font-size: 16px;
-  width: 100%;
   height: 40px;
+  width: 100%;
 }
 
 .formContainer {
-  composes: formContainer from '../../common.module.scss'
+  composes: formContainer from '../../common.module.scss';
 }
 
 .goToRegister {

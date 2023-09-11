@@ -4,9 +4,10 @@ import {
   Button, Form, Dialog,
 } from 'antd-mobile';
 import TInput from '@components/TInput';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppContext } from '@utils/context';
 import { useEffect } from 'react';
+import Cookies from 'js-cookie';
 import { login } from '../../services/login';
 import style from './index.module.scss';
 
@@ -17,6 +18,7 @@ import style from './index.module.scss';
 const Login = () => {
   const [form] = Form.useForm();
   const [, setStore] = useAppContext();
+  const nav = useNavigate();
 
   useEffect(() => {
     setStore({
@@ -32,6 +34,8 @@ const Login = () => {
         Dialog.alert({
           content: 'login success',
         });
+        Cookies.set('userId', res.data[0].id);
+        nav('/tweets');
         return;
       }
       Dialog.alert({

@@ -1,8 +1,13 @@
+@import '../../index.scss';
 
 .header{
+  position: fixed;
   height: 50px;
   text-align: center;
-/*    background-color: #ccc; */
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(255,255,255, 0.95);
 }
 
 .twitterLogo {
@@ -15,4 +20,27 @@
   top: 18px;
   left: 18px;
   font-size: 16px;
+}
+
+.avatar {
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+  top: 12px;
+  left: 20px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 50px;
+  position: absolute;
+  left: 60px;
+}
+
+.back {
+  width: 20px;
+  vertical-align: middle;
+  float: left;
+  margin: 15px;
 }

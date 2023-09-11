@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Button } from 'antd-mobile';
 import PropTypes from 'prop-types';
 import style from '../index.module.scss';

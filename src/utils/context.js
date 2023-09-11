@@ -1,27 +1,36 @@
 import {
-  createContext, useContext, useMemo, useState,
+  createContext, useContext, useState, useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * 默认 store
+ */
 const defaultStore = {
   closeHeaderHandler: null,
 };
 
 /**
- * Step 1: create context
+ * 第一步：创建 context
  */
-export const AppContext = createContext();
+const AppContext = createContext();
 
 /**
- * Step 2: wrap component
+ * 第二步：包裹组件
  */
 export const CxtProvider = ({
   children,
 }) => {
   const [store, setStore] = useState(defaultStore);
+  const update = (v) => {
+    setStore((st) => ({
+      ...st,
+      ...v,
+    }));
+  };
 
   const value = useMemo(() => ({
-    store, setStore,
+    store, update,
   }), [store]);
 
   return (
@@ -36,10 +45,9 @@ CxtProvider.propTypes = {
 };
 
 /**
- * Step 3: use useCotext
+ * 第三步 调用useContext 使用数据
  */
 export const useAppContext = () => {
   const cxt = useContext(AppContext);
-
-  return [cxt.store, cxt.setStore];
+  return [cxt.store, cxt.update];
 };

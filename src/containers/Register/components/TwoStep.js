@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { Input } from 'antd-mobile';
 import PropTypes from 'prop-types';
@@ -69,11 +68,10 @@ const TwoStep = ({
 };
 
 TwoStep.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  onConfirmRegisterHandler: PropTypes.func.isRequired,
+  confirmRegisterHandler: PropTypes.func.isRequired,
   userInfo: PropTypes.shape({
     username: PropTypes.string,
-    emai: PropTypes.string,
+    email: PropTypes.string,
     tel: PropTypes.string,
     birthday: PropTypes.string,
   }).isRequired,

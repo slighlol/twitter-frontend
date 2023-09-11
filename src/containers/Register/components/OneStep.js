@@ -10,8 +10,8 @@ import Footer from './Footer';
 import style from '../index.module.scss';
 
 const ACCOUNT_TYPE = {
-  TEL: 'TEL',
-  EMAIL: 'EMAIL',
+  TEL: 0,
+  EMAIL: 1,
 };
 
 /**

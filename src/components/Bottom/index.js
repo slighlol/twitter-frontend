@@ -1,52 +1,42 @@
 import { TabBar } from 'antd-mobile';
-import { useState } from 'react';
-import homeSvg from '@assets/home.svg';
-import messageSvg from '@assets/message.svg';
-import tipSvg from '@assets/tip.svg';
-import searchSvg from '@assets/search.svg';
-
+import { useEffect } from 'react';
+import { useAppContext } from '@utils/context';
+import { useCurMenu, useGoto } from '@utils/hooks';
+import { getMenuByKey, menus } from '@utils/constants';
 import style from './index.module.scss';
-
-const menus = [
-  {
-    key: 'home',
-    title: 'Home Page',
-    link: 'tweets',
-    icon: <img className={style.icon} src={homeSvg} alt="" />,
-  },
-  {
-    key: 'search',
-    link: '/',
-    icon: <img className={style.icon} src={searchSvg} alt="" />,
-  },
-  {
-    key: 'tip',
-    title: 'Notifications',
-    link: '/',
-    icon: <img className={style.icon} src={tipSvg} alt="" />,
-  },
-  {
-    key: 'message',
-    title: 'Messages',
-    link: '/',
-    icon: <img className={style.icon} src={messageSvg} alt="" />,
-  },
-];
 
 /**
 * Bottom bar
 */
 
 const Bottom = () => {
-  const [activeKey, setActiveKey] = useState();
+  const [, setStore] = useAppContext();
+  const go = useGoto();
+  const menu = useCurMenu();
+
+  useEffect(() => {
+    if (menu) {
+      setStore({
+        title: menu.title,
+      });
+    }
+  }, []);
 
   const onChangeTabItem = (key) => {
-    setActiveKey(key);
+    const mu = getMenuByKey(key);
+    setStore({
+      title: mu.title,
+    });
+    go(key);
   };
+
+  if (menu.hideHeader) {
+    return null;
+  }
 
   return (
     <div className={style.container}>
-      <TabBar activeKey={activeKey} onChange={onChangeTabItem}>
+      <TabBar onChange={onChangeTabItem}>
         {menus.map((item) => (
           <TabBar.Item key={item.key} icon={item.icon} />
         ))}

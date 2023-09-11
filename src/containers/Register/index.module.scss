@@ -1,81 +1,82 @@
 @import '../../common.module.scss';
+@import '../../index.scss';
 
-  .common {
-    composes: input from '../../common.module.scss';
-  }
+.common {
+  composes: input from '../../common.module.scss';
+}
 
-  .form {
-    margin: 0 30px;
-  }
+.form {
+  margin: 0 30px;
+}
 
-  .formContainer {
-    composes: formContainer from '../../common.module.scss'
-  }
+.formContainer {
+  composes: formContainer from '../../common.module.scss'
+}
 
-  .formTitle {
-    composes: formTitle from '../../common.module.scss'
-  }
+.formTitle {
+  composes: formTitle from '../../common.module.scss';
+}
 
-  .input {
-    composes: common;
-  }
+.input {
+  composes: common;
+}
 
-  .changeTypeButton {
-    color: $tBlue;
-  }
+.changeTypeButton {
+  color: $tBlue;
+}
 
-  .birthdayTitle {
-    font-size: 14px;
-    color: #000;
-    margin-top: 25px;
-    font-weight: 700;
-  }
+.birthdayTitle {
+  font-size: 14px;
+  color: #000;
+  margin-top: 25px;
+  font-weight: 700;
+}
 
-  .footer {
-    position: fixed;
-    text-align: center;
-    bottom: 20px;
-    width: 100%;
-  }
+.footer {
+  position: fixed;
+  text-align: center;
+  bottom: 20px;
+  width: 100%;
+}
 
-  .footerButtonDisabled {
-    margin: 0 auto;
-    border-radius: 50px;
-    background-color: $tGray;
-    color: #fff;
-    font-size: 16px;
-    width: 80%;
-    height: 40px;
-  }
+.footerButtonDisabled {
+  margin: 0 auto;
+  border-radius: 50px;
+  background-color: $tGray;
+  color: #fff;
+  font-size: 16px;
+  width: 80%;
+  height: 40px;
+}
 
-  .footerButton {
-    composes: footerButtonDisabled;
-    background-color: #000;
-  }
 
-  .showLabelContainer {
-    border: solid 1px $tGrayWhite;
-    padding: 10px;
-    border-radius: 5px;
-  }
+.footerButton {
+  composes: footerButtonDisabled;
+  background-color: #000;
+}
 
-  .showLabel {
-    font-size: 18px;
-    height: 40px;
-    line-height: 40px;
-    :global(span) {
-      color: $tGray;
-      margin: 10px;
-    }
+.showLabel {
+  font-size: 18px;
+  height: 40px;
+  line-height: 40px;
+  :global(span) {
+    color: $tGray;
   }
+}
 
-  .label {
-    font-size: 18px;
-    margin: 30px 0 10px 0;
-  }
+.showLabelContainer {
+  border: solid 1px $tGrayWhite;
+  padding: 10px;
+  border-radius: 5px;
+}
 
-  .showTip {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-  }
+.label {
+  font-size: 18px;
+  margin: 30px 0 10px 0;
+}
+
+.showTip {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}

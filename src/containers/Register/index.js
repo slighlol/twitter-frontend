@@ -1,24 +1,20 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable arrow-body-style */
 import { useEffect, useState } from 'react';
-import Show from '@components/Show';
-import { registerUser } from '@services/register';
 import { Toast } from 'antd-mobile';
-import { useAppContext } from '@utils/context';
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '@utils/context';
+import { registerUser } from '@services/register';
+import Show from '@components/Show';
 import OneStep from './components/OneStep';
 import TwoStep from './components/TwoStep';
 
-// indicate step
+// step
 const STEP = {
   ONE: 1,
   TWO: 2,
 };
-
 /**
- * registration page
+ * register page
  */
-
 const Register = () => {
   const [step, setStep] = useState(STEP.ONE);
   const [userInfo, setUserInfo] = useState({});
@@ -50,10 +46,10 @@ const Register = () => {
       ...userInfo,
     });
     if (res.success) {
-      Toast.show('Success');
+      Toast.show('SUCCESS');
       return;
     }
-    Toast.show('Fail');
+    Toast.show('FAIL');
   };
 
   return (
@@ -64,7 +60,7 @@ const Register = () => {
       <Show visible={step === STEP.TWO} isMount>
         <TwoStep
           userInfo={userInfo}
-          goToOneStepHanlder={() => setStep(STEP.ONE)}
+          goToOneStepHandler={() => setStep(STEP.ONE)}
           confirmRegisterHandler={confirmRegisterHandler}
         />
       </Show>

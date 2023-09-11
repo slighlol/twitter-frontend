@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import style from './index.module.scss';
 
 /**
- * interact Input
+ * Interact Input
  */
 const TInput = ({
   label,
@@ -21,7 +21,7 @@ const TInput = ({
       setIsFocused(true);
       setHide(true);
     }
-  }, []);
+  }, [value]);
 
   const onFocus = () => {
     setIsFocused(true);
@@ -32,7 +32,9 @@ const TInput = ({
     if (!value || value.length === 0) {
       setIsFocused(false);
       setHide(false);
+      return;
     }
+    setHide(false);
   };
 
   const onChangeHandler = (val) => {

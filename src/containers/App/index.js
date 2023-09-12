@@ -5,7 +5,6 @@ import { useAppContext } from '@utils/context';
 import { Toast } from 'antd-mobile';
 import { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from 'js-cookie';
 import { useCurMenu } from '@utils/hooks';
 import style from './index.module.scss';

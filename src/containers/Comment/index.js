@@ -1,10 +1,13 @@
-import { Steps, TextArea } from 'antd-mobile';
-import { useState, useEffect } from 'react';
-
-import moment from 'moment';
-import { useAppContext } from '@utils/context';
 import TButton from '@components/TButton';
 import Header from '@components/Header';
+import { useAppContext } from '@utils/context';
+import { useGoto } from '@utils/hooks';
+import { Steps, TextArea, Toast } from 'antd-mobile';
+import moment from 'moment';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { createComment } from '@services/comment';
+
 import style from './index.module.scss';
 
 const { Step } = Steps;
@@ -50,11 +53,23 @@ const Comment = () => {
   const [store] = useAppContext();
   const [data, setData] = useState(defaultTweet);
   const [text, setText] = useState('');
+  const params = useParams();
+  const go = useGoto();
   useEffect(() => {
     setData(defaultTweet);
   }, []);
   const onClickReply = () => {
-
+    createComment({
+      content: text,
+      tweet_id: params.id,
+    }).then((res) => {
+      if (res?.success) {
+        Toast.show('reply succeeded');
+        go();
+        return;
+      }
+      Toast.show('reply failed');
+    });
   };
   const onChangeText = (v) => {
     setText(v);

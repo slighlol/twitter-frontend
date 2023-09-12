@@ -16,5 +16,12 @@
       "avatar_url": "https://img.shoufaw.com/wp-content/uploads/2020/10/aEjURn.jpg",
       "id": 2
     }
+  ],
+  "comments": [
+    {
+      "content": "good",
+      "tweet_id": "1",
+      "id": 1
+    }
   ]
 }

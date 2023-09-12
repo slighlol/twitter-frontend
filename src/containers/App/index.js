@@ -1,5 +1,6 @@
 import Bottom from '@components/Bottom';
 import Header from '@components/Header';
+import CreateButton from '@components/CreateButton';
 import { getUser } from '@services/login';
 import { useAppContext } from '@utils/context';
 import { Toast } from 'antd-mobile';
@@ -37,11 +38,16 @@ const App = () => {
     init();
   }, []);
 
+  const onClickCreateTweet = () => {
+    nav('/createTweet');
+  };
+
   return (
     <div className={style.container}>
       {!menu.hideHeader && <Header />}
       <Outlet />
       <Bottom />
+      {!menu.hideHeader && <CreateButton onClick={onClickCreateTweet} /> }
     </div>
   );
 };

@@ -14,6 +14,7 @@ export const menus = [
   },
   {
     key: 'search',
+    title: 'Search',
     link: '/search',
     isMenu: true,
     icon: <img className={style.icon} src={searchSvg} alt="" />,
@@ -36,6 +37,12 @@ export const menus = [
     key: 'comment',
     title: 'reply',
     link: '/comment',
+    hideHeader: true,
+  },
+  {
+    key: 'createTweet',
+    title: 'Post Tweet',
+    link: '/createTweet',
     hideHeader: true,
   },
 ];

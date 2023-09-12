@@ -31,11 +31,19 @@ const Header = ({
           <img src={store.user?.avatar_url} alt="" className={style.avatar} />
         </div>,
       );
-      result.push(
-        <span key="title" className={style.title}>
-          {store.title}
-        </span>,
-      );
+      if (store.title) {
+        result.push(
+          <span key="title" className={style.title}>
+            {store.title}
+          </span>,
+        );
+      } else {
+        result.push(
+          <span key="title" className={style.title}>
+            Home
+          </span>,
+        );
+      }
     }
   }
   // content for not login status

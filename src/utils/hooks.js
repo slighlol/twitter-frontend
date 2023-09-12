@@ -5,7 +5,7 @@ import { getMenuByKey, getMenuByLink, includeMenu } from './constants';
 export const useCurMenu = () => {
   const lo = useLocation();
   const it = getMenuByLink(lo.pathname);
-  return it;
+  return it || {};
 };
 
 // collect route redirect

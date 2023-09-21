@@ -1,3 +1,5 @@
+@import '../../index.scss';
+
 .content {
   padding: 20px;
 }
@@ -18,6 +20,7 @@
   width: calc(100% - 57px);
   display: inline-block;
   padding-top: 10px;
+  box-sizing: border-box;
 }
 
 .button {

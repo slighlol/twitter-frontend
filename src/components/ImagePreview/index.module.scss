@@ -3,6 +3,7 @@
 .container {
   height: 200px;
   padding: 10px 5px 0 0;
+  margin-bottom: 10px;
   :global(.adm-mask) {
     background-color: #000!important;
   }
@@ -12,12 +13,18 @@
   position: absolute;
   width: 50%;
   background-color: aqua;
+  border-radius: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.itemImg {
+  height: 100%;
+  width: 100%;
 }
 
 .wrapper {
   position: relative;
-  border-radius: 20px;
-  border: solid 1px $tGrayWhite;
   overflow: hidden;
   height: 200px;
   width: 100%;
@@ -33,13 +40,13 @@
 
 .wrapper2 {
   :global(.img0) {
-    border-right: solid 2px #fff;
+    border-right: solid 5px #fff;
     left: 0;
     width: 50%;
     height: 200px;
   }
   :global(.img1) {
-    border-left: solid 2px #fff;
+    border-left: solid 5px #fff;
     left: 50%;
     width: 50%;
     height: 200px;
@@ -48,19 +55,19 @@
 
 .wrapper3 {
   :global(.img0) {
-    border-right: solid 2px #fff;
+    border-right: solid 5px #fff;
     left: 0;
     height: 200px;
   }
   :global(.img1) {
-    border-left: solid 2px #fff;
-    border-bottom: solid 2px #fff;
+    border-left: solid 5px #fff;
+    border-bottom: solid 5px #fff;
     left: 50%;
     height: 100px;
   }
   :global(.img2) {
-    border-left: solid 2px #fff;
-    border-top: solid 2px #fff;
+    border-left: solid 5px #fff;
+    border-top: solid 5px #fff;
     left: 50%;
     height: 100px;
     top: 100px;
@@ -69,29 +76,43 @@
 
 .wrapper4 {
   :global(.img0) {
-    border-right: solid 2px #fff;
-    border-bottom: solid 2px #fff;
+    border-right: solid 5px #fff;
+    border-bottom: solid 5px #fff;
     left: 0;
     height: 100px;
   }
   :global(.img1) {
-    border-left: solid 2px #fff;
-    border-bottom: solid 2px #fff;
+    border-left: solid 5px #fff;
+    border-bottom: solid 5px #fff;
     left: 50%;
     height: 100px;
   }
   :global(.img2) {
-    border-left: solid 2px #fff;
-    border-top: solid 2px #fff;
+    border-left: solid 5px #fff;
+    border-top: solid 5px #fff;
     left: 50%;
     height: 100px;
     top: 100px;
   }
   :global(.img3) {
-    border-right: solid 2px #fff;
-    border-top: solid 2px #fff;
+    border-right: solid 5px #fff;
+    border-top: solid 5px #fff;
     left: 0;
     height: 100px;
     top: 100px;
   }
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  color: #fff;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  font-size: 12px;
+  padding: 5px;
 }

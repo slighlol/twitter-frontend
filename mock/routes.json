@@ -1,4 +1,5 @@
 {
+  "/api/tweets": "/tweets",
   "/api/comments": "/comments",
   "/api/accounts/signup": "/user",
   "/api/user/:id": "/user/:id",

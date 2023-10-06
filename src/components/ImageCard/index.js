@@ -5,6 +5,7 @@ import { Image, ImageViewer } from 'antd-mobile';
 import classNames from 'classnames';
 
 import Bar from '@components/Bar';
+import { OBJECT_KEYS } from '@components/Bar/constants';
 import style from './index.module.scss';
 
 /**
@@ -57,7 +58,14 @@ const ImageCard = ({
           setVisible(false);
         }}
       />
-      {visible && <Bar isBottom likesCount={likesCount} commentsCount={commentsCount} />}
+      {visible && (
+      <Bar
+        isBottom
+        likesCount={likesCount}
+        commentsCount={commentsCount}
+        type={OBJECT_KEYS.TWEET}
+      />
+      )}
     </div>
   );
 };

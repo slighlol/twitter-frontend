@@ -79,12 +79,12 @@ export const ACTIONS = [
     text:
   <div className={style.copyButton}>
     <LinkOutline style={{ marginRight: 10 }} />
-    Cope Tweet Link
+    Copy Tweet Link
   </div>,
     key: ACTION_KEYS.COPY,
   },
   {
-    text: <div className={style.cancelButton}>取消</div>,
+    text: <div className={style.cancelButton}>Cancel</div>,
     key: ACTION_KEYS.CANCEL,
   },
 ];

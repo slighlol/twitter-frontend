@@ -2,12 +2,13 @@ import {
   List, CellMeasurer, CellMeasurerCache, WindowScroller,
 } from 'react-virtualized';
 import { useState, useEffect } from 'react';
-import { PullToRefresh } from 'antd-mobile';
+import { InfiniteScroll, PullToRefresh } from 'antd-mobile';
 // import { PullStatus } from 'antd-mobile/es/components/pull-to-refresh'
 import TweetCard from '@components/TweetCard';
 // import { usePullToRefresh } from '@utils/hooks';
 
 import { getFeeds } from '@services/tweet';
+// import { useDownLoad } from '@utils/hooks';
 import style from './index.module.scss';
 
 const cache = new CellMeasurerCache({
@@ -22,7 +23,9 @@ const noRowsRenderer = () => 'Loading...';
 */
 const Tweets = () => {
   const [data, setData] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
   // const tip = usePullToRefresh();
+  // const loading = useDownLoad();
   useEffect(() => {
     const init = async () => {
       const res = await getFeeds();
@@ -48,6 +51,14 @@ const Tweets = () => {
       )}
     </CellMeasurer>
   );
+  const handleLoadMore = async () => {
+    const res = await getFeeds();
+    setData((d) => [...d, ...res]);
+    if (res.length === 0) {
+      setHasMore(false);
+    }
+  };
+
   return (
     <div className={style.container}>
       <PullToRefresh
@@ -79,6 +90,9 @@ const Tweets = () => {
           )}
         </WindowScroller>
       </PullToRefresh>
+      <div style={{ height: 50 }}>
+        <InfiniteScroll loadMore={handleLoadMore} hasMore={hasMore} />
+      </div>
     </div>
   );
 };

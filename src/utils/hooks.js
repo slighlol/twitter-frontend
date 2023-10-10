@@ -95,3 +95,48 @@ export const usePullToRefresh = () => {
 
   return tip;
 };
+
+const OFFSET = 50;
+/**
+ * InfiniteScroll
+ */
+export const useDownLoad = () => {
+  const [loading, setLoading] = useState(false);
+  // determine is bottom
+  // 1:
+  // A document.documentElement.clientHieght (browser's height)
+  // B document.body.scrollHeight (content's actual height, larger than browser's height)
+  // C document.documentElement.scrollTop (D + B = C)
+  // 2:
+  // reach bottom meaning => scrollTop + clientHeight = scrollHeight;
+  // 3:
+  // OFFSET deviation
+  // scrollTop + clientHeight >= scrollHeight - OFFSET
+  // put <div style={{ height: 50 }}> {loading && 'Loading...'} </div> after </PullToRefresh>
+  useEffect(() => {
+    window.onscroll = () => {
+      if (loading) {
+        return;
+      }
+      const { clientHeight, scrollTop } = document.documentElement;
+      const { scrollHeight } = document.body;
+      if (scrollTop + clientHeight >= scrollHeight - OFFSET) {
+        setLoading(true);
+      }
+    };
+    return () => {
+      window.onscroll = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        console.log('finish');
+        setLoading(false);
+      }, 2000);
+    }
+  }, [loading]);
+
+  return loading;
+};

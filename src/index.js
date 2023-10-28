@@ -12,30 +12,32 @@ import CreateTweet from '@containers/CreateTweet';
 import Tweet from '@containers/Tweet';
 
 import './index.scss';
+import My from '@containers/My';
 
 // import { startVconsole } from './utils';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <CxtProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />}>
-            <Route index element={<Tweets />} />
-            <Route path="register" element={<Register />} />
-            <Route path="login" element={<Login />} />
-            <Route path="comment/:id" element={<Comment />} />
-            <Route path="createTweet" element={<CreateTweet />} />
-            <Route path="tip" element={<Comment />} />
-            <Route path="message" element={<Comment />} />
-            <Route path="search" element={<Comment />} />
-            <Route path="tweet/:id" element={<Tweet />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </CxtProvider>
-  </React.StrictMode>,
+//  <React.StrictMode> prevent warning
+  <CxtProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Tweets />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="comment/:id" element={<Comment />} />
+          <Route path="createTweet" element={<CreateTweet />} />
+          <Route path="tip" element={<Comment />} />
+          <Route path="message" element={<Comment />} />
+          <Route path="search" element={<Comment />} />
+          <Route path="my" element={<My />} />
+          <Route path="tweet/:id" element={<Tweet />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </CxtProvider>,
+//  </React.StrictMode>,
 );
 
 // start vconsole

@@ -48,7 +48,16 @@ const ImageCard = ({
   // before classnames npm => `${style.wrapper} ${getWrapper()}` & `${style.img} img${index}`
     <div className={style.container}>
       <div className={classNames(style.wrapper, getWrapper())}>
-        {imgs.map((img, index) => (<Image onClick={() => onClickImage(index)} fit="cover" className={classNames(style.img, `img${index}`)} key={classNames(img, index)} src={img} alt="" />))}
+        {imgs.map((img, index) => (
+          <Image
+            onClick={() => onClickImage(index)}
+            fit="cover"
+            className={classNames(style.img, `img${index}`)}
+            key={classNames(img, index)}
+            src={img}
+            alt=""
+          />
+        ))}
       </div>
       <ImageViewer.Multi
         ref={imageViewRef}

@@ -1,7 +1,5 @@
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable arrow-body-style */
-import { post } from '@utils/request';
+import { post, put } from '@utils/request';
 
-export const registerUser = (params) => {
-  return post('/api/accounts/signup', params);
-};
+export const registerUser = (params) => post('/api/accounts/signup', params);
+
+export const editUser = (userId, params) => put(`/api/profiles/${userId}`, params);

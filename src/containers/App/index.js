@@ -32,13 +32,15 @@ const App = () => {
           user: res.data,
         });
         if (location.pathname === '/login') {
-          nav('/tweets');
+          nav('/');
         }
         return;
       }
       nav('/login');
     };
-    init();
+    if (location.pathname !== '/register') {
+      init();
+    }
   }, [location.pathname]);
 
   const onClickCreateTweet = () => {
@@ -49,8 +51,8 @@ const App = () => {
     <div className={style.container}>
       {!menu.hideHeader && <Header />}
       <Outlet />
-      <Bottom />
-      {!menu.hideHeader && <CreateButton onClick={onClickCreateTweet} /> }
+      {!menu.hidebottom && <Bottom />}
+      {(!menu.hideHeader && !menu.hideCreate) && <CreateButton onClick={onClickCreateTweet} /> }
     </div>
   );
 };

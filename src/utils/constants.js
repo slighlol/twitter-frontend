@@ -43,6 +43,21 @@ export const menus = [
     link: '/editUser',
     hideHeader: true,
   },
+  {
+    key: 'login',
+    title: 'login',
+    link: '/login',
+    hideHeader: true,
+    hidebottom: true,
+  },
+  {
+    key: 'register',
+    title: 'register',
+    link: '/register',
+    hideHeader: false,
+    hidebottom: true,
+    hideCreate: true,
+  },
 ];
 
 export const getMenuByKey = (key) => menus.find((item) => item.key === key);

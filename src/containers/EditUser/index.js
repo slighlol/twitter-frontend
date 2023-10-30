@@ -30,7 +30,7 @@ const EditUser = () => {
     });
   };
   const handleSave = async () => {
-    if (!nickname || !avatar) {
+    if (nickname || avatar) {
       const res = await editUser(store.user?.id, {
         ...store.user,
         nickname: nickname || store.user.nickname,

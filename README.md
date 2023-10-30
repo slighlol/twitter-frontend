@@ -42,3 +42,7 @@ under DOC folder
 ## frontend engineering config info
 - craco.config.js: webpack file alias
 - jsconfig.json: used by vscode js config
+
+## H5 Page Adaptation plan/適配方案
+- VW 100
+- VH 100

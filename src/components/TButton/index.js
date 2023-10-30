@@ -25,12 +25,13 @@ const TButton = ({
 TButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
   className: PropTypes.string,
 };
 
 TButton.defaultProps = {
   className: '',
+  disabled: false,
 };
 
 export default TButton;

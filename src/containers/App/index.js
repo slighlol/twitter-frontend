@@ -11,7 +11,7 @@ import { useCurMenu } from '@utils/hooks';
 import style from './index.module.scss';
 
 const App = () => {
-  const [, setStore] = useAppContext();
+  const [store, setStore] = useAppContext();
   const nav = useNavigate();
   const location = useLocation();
   const menu = useCurMenu();
@@ -21,6 +21,9 @@ const App = () => {
       if (!userId) {
         Toast.show('Please login first');
         nav('/login');
+        return;
+      }
+      if (store.user) {
         return;
       }
       const res = await getUser(userId);
@@ -36,7 +39,7 @@ const App = () => {
       nav('/login');
     };
     init();
-  }, []);
+  }, [location.pathname]);
 
   const onClickCreateTweet = () => {
     nav('/createTweet');

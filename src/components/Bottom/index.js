@@ -1,32 +1,17 @@
 import { TabBar } from 'antd-mobile';
-import { useEffect } from 'react';
-import { useAppContext } from '@utils/context';
 import { useCurMenu, useGoto } from '@utils/hooks';
-import { getMenuByKey, menus } from '@utils/constants';
+import { menus } from '@utils/constants';
+
 import style from './index.module.scss';
 
 /**
-* Bottom bar
+* Bottom Bar
 */
-
 const Bottom = () => {
-  const [, setStore] = useAppContext();
   const go = useGoto();
   const menu = useCurMenu();
 
-  useEffect(() => {
-    if (menu) {
-      setStore({
-        title: menu.title,
-      });
-    }
-  }, []);
-
   const onChangeTabItem = (key) => {
-    const mu = getMenuByKey(key);
-    setStore({
-      title: mu.title,
-    });
     go(key);
   };
 
